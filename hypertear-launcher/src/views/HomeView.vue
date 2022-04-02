@@ -20,7 +20,7 @@
       <div class="floatRight">
         <NewsBox
           title="Welcome to the new launcher!"
-          url="https://www2.tuhh.de/zll/wp-content/uploads/placeholder.png"
+          url="file:///C:/Users/Admin/OneDrive/Desktop/HyperTear%20Launcher/hypertear-launcher/src/assets/HyperTearPS2.png"
         />
       </div>
     </div>
@@ -34,6 +34,9 @@ import Slideshow from "@/components/SlideshowComponent.vue";
 import NewsBox from "@/components/NewsBox.vue";
 import PlayButton from "@/components/PlayButton.vue";
 import { ipcRenderer } from "electron";
+import path from "path";
+
+console.log(__dirname);
 
 @Options({
   components: {
