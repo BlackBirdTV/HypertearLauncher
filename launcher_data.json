@@ -1,0 +1,13 @@
+{
+  "game_version": 1000
+  "SlideshowUrls": [
+    "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot1.png",
+    "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot2.png"
+  ]
+  "News": [
+    {
+      title: "Welcome to the new Launcher!",
+      url: "https://github.com/BlackBirdTV/HypertearLauncher/raw/pages/HyperTearPS2.png"
+    }
+   ]
+}
