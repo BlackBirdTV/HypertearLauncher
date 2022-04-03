@@ -4,6 +4,7 @@
 }
 * {
   font-family: "Quicksilver", sans-serif;
+  user-select: none;
 }
 *:focus {
   outline: none;
@@ -90,6 +91,20 @@ body {
   background-color: rgba(8, 24, 38, 0.5);
   overflow: visible;
 }
+.playBar .updateStatus {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.downloadStatusBar {
+  background: #0084ff;
+  height: 5px;
+  margin-top: 95px;
+}
 
 .playButton {
   position: absolute;
@@ -107,11 +122,19 @@ body {
   background-color: #eb4034;
 }
 
+.newsContainer {
+  margin-bottom: 20px;
+  height: 160px;
+  margin-top: -80px;
+}
+
 .newsBox {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 200px;
+  float: right;
+  position: relative;
+  margin-bottom: 0;
+  margin-top: 10px;
+  margin-right: 20px;
+  width: 250px;
   height: 150px;
   border-radius: 20px;
   transition: all 0.3s ease-out;
@@ -119,7 +142,7 @@ body {
 }
 .newsBox img {
   object-fit: cover;
-  width: 200px;
+  width: 250px;
   height: 150px;
 }
 .newsBox span {
@@ -129,11 +152,20 @@ body {
   right: 0;
 }
 .newsBox:hover {
-  bottom: 30px;
+  margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .floatLeft {
   float: left;
+}
+
+.floatCenter {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  align-items: center;
 }
 
 .floatRight {

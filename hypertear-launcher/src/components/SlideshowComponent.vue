@@ -1,10 +1,7 @@
 <template>
   <div id="slideshow">
-    <div class="slideshowItem">
-      <img src="@/assets/Bot1.png" alt="Failed to load slideshow" />
-    </div>
-    <div class="slideshowItem">
-      <img src="@/assets/Bot2.png" alt="Failed to load slideshow" />
+    <div v-for="url in urls" :key="(url as string)" class="slideshowItem">
+      <img :src="(url as string)" alt="Failed to load" />
     </div>
     <button @click="nextSlide()" class="next">&#10095;</button>
     <button @click="prevSlide()" class="prev">&#10094;</button>
@@ -14,13 +11,27 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-const slides = document.getElementsByClassName("slideshowItem");
+let slides = document.getElementsByClassName("slideshowItem");
+
+const slideshow = document.getElementById("slideshow");
 
 let timeout: NodeJS.Timeout;
 
 const component = defineComponent({
   mounted() {
     timeout = setTimeout(this.nextSlide, 4000);
+  },
+  props: {
+    urls: {
+      type: Array,
+      required: false,
+      default: () => {
+        return [
+          "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot2.png",
+          "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot1.png",
+        ];
+      },
+    },
   },
   methods: {
     setSlide(n: number) {

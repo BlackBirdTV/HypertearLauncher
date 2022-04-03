@@ -1,10 +1,15 @@
 "use strict";
 
-import { app, protocol, BrowserWindow, ipcMain } from "electron";
+import { app, protocol, BrowserWindow, ipcMain, screen } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 import * as child_process from "child_process";
 import { Vue } from "vue-class-component";
+import * as fs from "fs";
+import Store from "electron-store";
+
+let store: Store;
+
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Scheme must be registered before the app is ready
@@ -17,10 +22,26 @@ let win: Electron.BrowserWindow;
 let game_process: child_process.ChildProcess;
 
 async function createWindow() {
+  const display = screen.getPrimaryDisplay().workAreaSize;
+
+  store = new Store();
+
+  const options = {
+    sizeX: store.get("sizeX") as number,
+    sizeY: store.get("sizeY") as number,
+    posX: store.get("posX") as number,
+    posY: store.get("posY") as number,
+  };
+  const sizeX = options.sizeX < 500 ? 1050 : options.sizeX;
+  const sizeY = options.sizeY < 500 ? 600 : options.sizeY;
+  const posX = options.posX < 0 ? display.width / 2 - sizeX / 2 : options.posX;
+  const posY = options.posY < 0 ? display.height / 2 - sizeY / 2 : options.posY;
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1050,
-    height: 600,
+    width: sizeX,
+    height: sizeY,
+    x: posX,
+    y: posY,
     frame: false,
     autoHideMenuBar: true,
     transparent: true,
@@ -32,6 +53,15 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
       enableRemoteModule: true,
     },
+  });
+
+  win.on("close", () => {
+    store.store = {
+      posX: win.getPosition()[0],
+      posY: win.getPosition()[1],
+      sizeX: win.getSize()[0],
+      sizeY: win.getSize()[1],
+    };
   });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
