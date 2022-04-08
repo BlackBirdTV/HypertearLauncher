@@ -1,5 +1,6 @@
 {
   "game_version": 1000,
+  "game_files_url": "https://raw.githubusercontent.com/BlackBirdTV/HypertearLauncher/pages/game_files.zip",
   "SlideshowUrls": [
     "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot1.png",
     "http://github.com/BlackBirdTV/HypertearLauncher/raw/pages/Bot2.png"
